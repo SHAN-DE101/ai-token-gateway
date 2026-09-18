@@ -1,4 +1,5 @@
 import os
+import asyncio
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
@@ -16,7 +17,7 @@ telemetry_service = None
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global telemetry_service
-    # Gracefully attempt connections; fallback cleanly if cloud services are unconfigured
+    # Gracefully attempt connections in serverless environment
     try:
         await redis_manager.connect()
     except Exception:
