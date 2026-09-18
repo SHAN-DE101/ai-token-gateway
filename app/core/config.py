@@ -1,25 +1,37 @@
 from pydantic_settings import BaseSettings
+from typing import Optional
 
 class Settings(BaseSettings):
-    REDIS_URL: str = "redis://127.0.0.1:6379/0"
+    PROJECT_NAME: str = "AI Token Gateway"
+    VERSION: str = "1.0.0"
     
-    CLICKHOUSE_HOST: str = "127.0.0.1"
+    # Upstream AI
+    OPENAI_API_KEY: str = "mock-key"
+    OPENAI_API_BASE: str = "https://generativelanguage.googleapis.com/v1beta/openai"
+    UPSTREAM_TIMEOUT_SECONDS: float = 30.0
+    MAX_KEEP_ALIVE_CONNS: int = 20
+    MAX_CONCURRENT_CONNS: int = 100
+    
+    # Redis
+    REDIS_URL: str = "redis://localhost:6379/0"
+    
+    # Postgres
+    POSTGRES_URL: Optional[str] = None
+    POSTGRES_USER: str = "gateway_user"
+    POSTGRES_PASSWORD: str = "gateway_pass"
+    POSTGRES_DB: str = "gateway_catalog"
+    POSTGRES_HOST: str = "localhost"
+    POSTGRES_PORT: int = 5432
+    
+    # ClickHouse
+    CLICKHOUSE_HOST: str = "localhost"
     CLICKHOUSE_PORT: int = 8123
     CLICKHOUSE_USER: str = "default"
     CLICKHOUSE_PASSWORD: str = ""
-    CLICKHOUSE_DB: str = "ai_gateway"
-
-    POSTGRES_URL: str = "postgresql://gateway_admin:gateway_secret@127.0.0.1:5432/gateway_db"
-
-    OPENAI_API_BASE: str = "http://127.0.0.1:8001/v1"
-    OPENAI_API_KEY: str = "mock-key"
-    UPSTREAM_TIMEOUT_SECONDS: float = 30.0
-
-    MAX_KEEP_ALIVE_CONNS: int = 500
-    MAX_CONCURRENT_CONNS: int = 2000
+    CLICKHOUSE_DATABASE: str = "ai_gateway"
 
     class Config:
         env_file = ".env"
-        extra = "allow"
+        extra = "ignore"
 
 settings = Settings()
