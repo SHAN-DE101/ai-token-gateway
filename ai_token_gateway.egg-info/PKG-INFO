@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: ai-token-gateway
+Version: 0.1.0
+Requires-Dist: fastapi>=0.110.0
+Requires-Dist: uvicorn[standard]>=0.28.0
+Requires-Dist: uvloop>=0.19.0; sys_platform != "win32"
+Requires-Dist: httpx[http2]>=0.27.0
+Requires-Dist: redis[hiredis]>=5.0.3
+Requires-Dist: clickhouse-connect>=0.7.6
+Requires-Dist: pydantic>=2.6.4
+Requires-Dist: pydantic-settings>=2.2.1
+Requires-Dist: tiktoken>=0.6.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.1.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.23.5; extra == "dev"
+Requires-Dist: locust>=2.24.0; extra == "dev"

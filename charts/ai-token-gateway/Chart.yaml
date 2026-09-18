@@ -1,0 +1,13 @@
+apiVersion: v2
+name: ai-token-gateway
+description: Production-grade Enterprise AI Token Gateway with ClickHouse Telemetry and Redis Rate Limiting
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - ai-gateway
+  - llm-proxy
+  - rate-limiting
+  - clickhouse
+maintainers:
+  - name: Platform Engineering
